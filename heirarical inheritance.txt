@@ -1,0 +1,29 @@
+import java.util.Scanner;
+class Person {
+    String name;
+    void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter name: ");
+        name = sc.nextLine();
+    }
+}
+class Teacher extends Person {
+    void display() {
+        System.out.println("Teacher: " + name);
+    }
+}
+class Administrator extends Person {
+    void display() {
+        System.out.println("Administrator: " + name);
+    }
+}
+public class HierarchicalInheritance {
+    public static void main(String[] args) {
+        Teacher t = new Teacher();
+        t.input();
+        t.display();
+        Administrator a = new Administrator();
+        a.input();
+        a.display();
+    }
+}

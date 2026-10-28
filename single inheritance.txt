@@ -1,0 +1,33 @@
+import java.util.Scanner;
+class Person {
+    String name;
+    int age;
+    void inputDetails() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter name: ");
+        name = sc.nextLine();
+        System.out.print("Enter age: ");
+        age = sc.nextInt();
+    }
+}
+class Student extends Person {
+    int rollNo;
+    void inputStudent() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter roll number: ");
+        rollNo = sc.nextInt();
+    }
+    void display() {
+        System.out.println("\nName: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Roll Number: " + rollNo);
+    }
+}
+public class SingleInheritance {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.inputDetails();
+        s.inputStudent();
+        s.display();
+    }
+}

@@ -1,0 +1,25 @@
+.java
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+
+@WebServlet("/hello")
+public class HelloServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req,
+                      HttpServletResponse res)
+                      throws IOException {
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        String name = req.getParameter("name");
+        out.println("<h2>Welcome " + name + "!</h2>");
+    }
+}
+
+.html
+
+<form action="hello" method="get">
+    Enter Name: <input type="text" name="name">
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,15 @@
+<html>
+<body>
+    <h2>Student Details</h2>
+
+    <%
+        String name = "Rahul";
+        String roll = "27";
+        String dept = "AI&DS";
+    %>
+
+    Name: <%= name %><br>
+    Register Number: <%= roll %><br>
+    Department: <%= dept %>
+</body>
+</html>

@@ -1,0 +1,51 @@
+.java
+
+import java.sql.*;
+import java.util.*;
+class StudentCRUD {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        Connection c = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "root");
+        while (true) {
+            System.out.println("1.Insert 2.Update 3.Delete 4.Display 5.Exit");
+            int ch = sc.nextInt();
+            PreparedStatement p;
+            if (ch == 5) break;
+            if (ch == 1) {
+                System.out.print("ID and Name: ");
+                p = c.prepareStatement("INSERT INTO student VALUES(?,?)");
+                p.setInt(1, sc.nextInt());
+                p.setString(2, sc.next());
+            } else if (ch == 2) {
+                System.out.print("ID and New Name: ");
+                p = c.prepareStatement("UPDATE student SET name=? WHERE id=?");
+                String n = sc.next();
+                p.setString(1, n);
+                p.setInt(2, sc.nextInt());
+            } else if (ch == 3) {
+                System.out.print("ID: ");
+                p = c.prepareStatement("DELETE FROM student WHERE id=?");
+                p.setInt(1, sc.nextInt());
+            } else {
+                ResultSet r = c.createStatement().executeQuery("SELECT * FROM student");
+                while (r.next())
+                    System.out.println(r.getInt(1) + " " + r.getString(2));
+                continue;
+            }
+            p.executeUpdate();
+            System.out.println("Operation successful");
+        }
+        c.close();
+    }
+}
+
+.sql
+
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(30)
+);
